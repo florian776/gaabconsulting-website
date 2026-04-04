@@ -1,0 +1,1570 @@
+<!DOCTYPE html>
+<html lang="de">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Florian Gaab Consulting | K.I.-Beratung &amp; IT-Projektmanagement</title>
+    <meta name="description" content="Florian Gaab - Freiberuflicher IT-Projektmanager und K.I.-Berater. Spezialisiert auf K.I.-Implementierung, IT-Projektmanagement und digitale Transformation.">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=Playfair+Display:wght@600;700&display=swap" rel="stylesheet">
+    <style>
+        *, *::before, *::after { margin: 0; padding: 0; box-sizing: border-box; }
+
+        :root {
+            --navy: #0f1b2d;
+            --navy-light: #1a2d47;
+            --slate: #2c3e50;
+            --accent: #3b82f6;
+            --accent-dark: #2563eb;
+            --gold: #d4a574;
+            --text: #e2e8f0;
+            --text-muted: #94a3b8;
+            --bg-card: #162033;
+            --border: rgba(255,255,255,0.08);
+        }
+
+        html { scroll-behavior: smooth; }
+
+        body {
+            font-family: 'Inter', -apple-system, BlinkMacSystemFont, sans-serif;
+            background: var(--navy);
+            color: var(--text);
+            line-height: 1.7;
+            overflow-x: hidden;
+        }
+
+        /* Navigation */
+        nav {
+            position: fixed;
+            top: 0;
+            width: 100%;
+            z-index: 1000;
+            padding: 1rem 0;
+            transition: all 0.3s ease;
+        }
+
+        nav.scrolled {
+            background: rgba(15, 27, 45, 0.95);
+            backdrop-filter: blur(20px);
+            border-bottom: 1px solid var(--border);
+            padding: 0.6rem 0;
+        }
+
+        .nav-inner {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 2rem;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .nav-logo {
+            font-family: 'Playfair Display', serif;
+            font-size: 1.3rem;
+            font-weight: 700;
+            color: #fff;
+            text-decoration: none;
+            letter-spacing: 0.02em;
+        }
+
+        .nav-logo span { color: var(--accent); }
+
+        .nav-right {
+            display: flex;
+            align-items: center;
+            gap: 2rem;
+        }
+
+        .nav-links {
+            display: flex;
+            gap: 2rem;
+            list-style: none;
+        }
+
+        .nav-links a {
+            color: var(--text-muted);
+            text-decoration: none;
+            font-size: 0.9rem;
+            font-weight: 500;
+            transition: color 0.3s;
+            letter-spacing: 0.02em;
+        }
+
+        .nav-links a:hover { color: #fff; }
+
+        .lang-toggle {
+            display: flex;
+            align-items: center;
+            background: rgba(255,255,255,0.08);
+            border: 1px solid var(--border);
+            border-radius: 2rem;
+            padding: 0.25rem;
+            cursor: pointer;
+            flex-shrink: 0;
+        }
+
+        .lang-btn {
+            padding: 0.3rem 0.7rem;
+            border-radius: 1.5rem;
+            font-size: 0.78rem;
+            font-weight: 600;
+            border: none;
+            background: transparent;
+            color: var(--text-muted);
+            cursor: pointer;
+            transition: all 0.3s;
+            letter-spacing: 0.03em;
+        }
+
+        .lang-btn.active {
+            background: var(--accent);
+            color: #fff;
+        }
+
+        .nav-toggle {
+            display: none;
+            background: none;
+            border: none;
+            cursor: pointer;
+            padding: 0.5rem;
+        }
+
+        .nav-toggle span {
+            display: block;
+            width: 24px;
+            height: 2px;
+            background: #fff;
+            margin: 5px 0;
+            transition: all 0.3s;
+        }
+
+        /* Hero */
+        .hero {
+            min-height: 100vh;
+            display: flex;
+            align-items: center;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .hero::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background: radial-gradient(ellipse at 70% 50%, rgba(59,130,246,0.08) 0%, transparent 60%);
+        }
+
+        .hero-inner {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 2rem;
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 4rem;
+            align-items: center;
+            position: relative;
+            z-index: 1;
+        }
+
+        .hero-text { max-width: 560px; }
+
+        .hero-label {
+            display: inline-block;
+            font-size: 0.8rem;
+            font-weight: 600;
+            letter-spacing: 0.15em;
+            text-transform: uppercase;
+            color: var(--accent);
+            margin-bottom: 1.5rem;
+            padding: 0.4rem 1rem;
+            border: 1px solid rgba(59,130,246,0.3);
+            border-radius: 2rem;
+        }
+
+        .hero h1 {
+            font-family: 'Playfair Display', serif;
+            font-size: clamp(2.5rem, 5vw, 3.8rem);
+            font-weight: 700;
+            line-height: 1.15;
+            margin-bottom: 1.5rem;
+            color: #fff;
+        }
+
+        .hero h1 .accent {
+            background: linear-gradient(135deg, var(--accent), #60a5fa);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+        }
+
+        .hero-desc {
+            font-size: 1.1rem;
+            color: var(--text-muted);
+            margin-bottom: 2.5rem;
+            max-width: 480px;
+            line-height: 1.8;
+        }
+
+        .hero-buttons {
+            display: flex;
+            gap: 1rem;
+            flex-wrap: wrap;
+        }
+
+        .btn {
+            display: inline-flex;
+            align-items: center;
+            gap: 0.5rem;
+            padding: 0.85rem 2rem;
+            border-radius: 0.5rem;
+            font-size: 0.95rem;
+            font-weight: 600;
+            text-decoration: none;
+            transition: all 0.3s ease;
+            cursor: pointer;
+            border: none;
+        }
+
+        .btn-primary {
+            background: var(--accent);
+            color: #fff;
+        }
+
+        .btn-primary:hover {
+            background: var(--accent-dark);
+            transform: translateY(-2px);
+            box-shadow: 0 8px 30px rgba(59,130,246,0.3);
+        }
+
+        .btn-outline {
+            background: transparent;
+            color: #fff;
+            border: 1px solid rgba(255,255,255,0.2);
+        }
+
+        .btn-outline:hover {
+            border-color: var(--accent);
+            color: var(--accent);
+            transform: translateY(-2px);
+        }
+
+        .hero-image {
+            display: flex;
+            justify-content: center;
+        }
+
+        .hero-image img {
+            width: 100%;
+            max-width: 420px;
+            border-radius: 1rem;
+            object-fit: cover;
+            box-shadow: 0 25px 80px rgba(0,0,0,0.4);
+        }
+
+        .hero-stats {
+            display: flex;
+            gap: 3rem;
+            margin-top: 3rem;
+            padding-top: 2rem;
+            border-top: 1px solid var(--border);
+        }
+
+        .stat-number {
+            font-family: 'Playfair Display', serif;
+            font-size: 2rem;
+            font-weight: 700;
+            color: #fff;
+        }
+
+        .stat-label {
+            font-size: 0.85rem;
+            color: var(--text-muted);
+            margin-top: 0.2rem;
+        }
+
+        .stat-with-tooltip {
+            position: relative;
+            cursor: default;
+        }
+
+        .stat-tooltip {
+            position: absolute;
+            bottom: calc(100% + 12px);
+            left: 50%;
+            transform: translateX(-50%);
+            background: var(--bg-card);
+            border: 1px solid var(--border);
+            border-radius: 0.75rem;
+            padding: 1rem 1.25rem;
+            min-width: 220px;
+            opacity: 0;
+            visibility: hidden;
+            transition: all 0.3s ease;
+            box-shadow: 0 15px 40px rgba(0,0,0,0.4);
+            z-index: 10;
+        }
+
+        .stat-tooltip::after {
+            content: '';
+            position: absolute;
+            top: 100%;
+            left: 50%;
+            transform: translateX(-50%);
+            border: 8px solid transparent;
+            border-top-color: var(--bg-card);
+        }
+
+        .stat-with-tooltip:hover .stat-tooltip {
+            opacity: 1;
+            visibility: visible;
+            transform: translateX(-50%) translateY(-4px);
+        }
+
+        .stat-tooltip ul {
+            list-style: none;
+            margin: 0;
+            padding: 0;
+        }
+
+        .stat-tooltip li {
+            font-size: 0.82rem;
+            color: var(--text);
+            padding: 0.25rem 0;
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+        }
+
+        .stat-tooltip li::before {
+            content: '';
+            width: 5px;
+            height: 5px;
+            background: var(--accent);
+            border-radius: 50%;
+            flex-shrink: 0;
+        }
+
+        /* Sections */
+        section { padding: 6rem 0; }
+
+        .section-inner {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 2rem;
+        }
+
+        .section-label {
+            font-size: 0.8rem;
+            font-weight: 600;
+            letter-spacing: 0.15em;
+            text-transform: uppercase;
+            color: var(--accent);
+            margin-bottom: 1rem;
+        }
+
+        .section-title {
+            font-family: 'Playfair Display', serif;
+            font-size: clamp(2rem, 4vw, 2.8rem);
+            font-weight: 700;
+            color: #fff;
+            margin-bottom: 1.5rem;
+            line-height: 1.2;
+        }
+
+        .section-desc {
+            font-size: 1.05rem;
+            color: var(--text-muted);
+            max-width: 600px;
+            margin-bottom: 3rem;
+            line-height: 1.8;
+        }
+
+        /* Quote */
+        .quote-section {
+            text-align: center;
+            padding: 5rem 2rem;
+            position: relative;
+        }
+
+        .quote-section blockquote {
+            font-family: 'Playfair Display', serif;
+            font-size: clamp(1.5rem, 3vw, 2.2rem);
+            font-weight: 600;
+            color: #fff;
+            font-style: italic;
+            max-width: 700px;
+            margin: 0 auto 1rem;
+            line-height: 1.5;
+        }
+
+        .quote-section cite {
+            font-style: normal;
+            color: var(--text-muted);
+            font-size: 1rem;
+        }
+
+        .quote-philosophy {
+            max-width: 700px;
+            margin: 2rem auto 0;
+            font-size: 1.05rem;
+            color: var(--text-muted);
+            line-height: 1.8;
+        }
+
+        /* About */
+        .about-grid {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 4rem;
+            align-items: center;
+        }
+
+        .about-image img {
+            width: 100%;
+            max-width: 480px;
+            border-radius: 1rem;
+            box-shadow: 0 20px 60px rgba(0,0,0,0.3);
+        }
+
+        .about-text p {
+            color: var(--text-muted);
+            margin-bottom: 1.5rem;
+            font-size: 1.05rem;
+            line-height: 1.8;
+        }
+
+        .about-highlights {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 1rem;
+            margin-top: 2rem;
+        }
+
+        .highlight-item {
+            display: flex;
+            align-items: center;
+            gap: 0.75rem;
+            font-size: 0.95rem;
+            color: var(--text);
+        }
+
+        .highlight-item svg {
+            flex-shrink: 0;
+            color: var(--accent);
+        }
+
+        /* Certifications (compact, integrated) */
+        .certs-bar {
+            margin-top: 3rem;
+            padding-top: 2rem;
+            border-top: 1px solid var(--border);
+        }
+
+        .certs-bar-label {
+            font-size: 0.75rem;
+            font-weight: 600;
+            letter-spacing: 0.12em;
+            text-transform: uppercase;
+            color: var(--text-muted);
+            margin-bottom: 1.2rem;
+        }
+
+        .certs-row {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 1.5rem;
+            align-items: center;
+        }
+
+        .cert-badge {
+            display: flex;
+            align-items: center;
+            gap: 0.6rem;
+            background: rgba(255,255,255,0.04);
+            border: 1px solid var(--border);
+            border-radius: 0.5rem;
+            padding: 0.5rem 0.9rem;
+            transition: border-color 0.3s;
+        }
+
+        .cert-badge:hover { border-color: rgba(59,130,246,0.3); }
+
+        .cert-badge img {
+            width: 32px;
+            height: 32px;
+            object-fit: contain;
+        }
+
+        .cert-badge span {
+            font-size: 0.8rem;
+            color: var(--text-muted);
+            font-weight: 500;
+        }
+
+        /* Services */
+        .services-section { background: var(--navy-light); }
+
+        .services-grid {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 2rem;
+        }
+
+        .service-card {
+            background: var(--bg-card);
+            border: 1px solid var(--border);
+            border-radius: 1rem;
+            padding: 2.5rem;
+            transition: all 0.4s ease;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .service-card::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            height: 3px;
+            background: linear-gradient(90deg, var(--accent), #60a5fa);
+            opacity: 0;
+            transition: opacity 0.4s;
+        }
+
+        .service-card:hover {
+            transform: translateY(-4px);
+            border-color: rgba(59,130,246,0.2);
+            box-shadow: 0 20px 60px rgba(0,0,0,0.3);
+        }
+
+        .service-card:hover::before { opacity: 1; }
+
+        .service-icon {
+            width: 56px;
+            height: 56px;
+            background: rgba(59,130,246,0.1);
+            border-radius: 0.75rem;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            margin-bottom: 1.5rem;
+            color: var(--accent);
+        }
+
+        .service-card h3 {
+            font-size: 1.2rem;
+            font-weight: 600;
+            color: #fff;
+            margin-bottom: 1rem;
+        }
+
+        .service-card p {
+            font-size: 0.95rem;
+            color: var(--text-muted);
+            line-height: 1.7;
+        }
+
+        /* Projects */
+        .project-grid {
+            display: grid;
+            grid-template-columns: repeat(2, 1fr);
+            gap: 2rem;
+        }
+
+        .project-card {
+            background: var(--bg-card);
+            border: 1px solid var(--border);
+            border-radius: 1rem;
+            padding: 2rem;
+            transition: all 0.3s ease;
+        }
+
+        .project-card:hover {
+            border-color: rgba(59,130,246,0.2);
+            transform: translateY(-2px);
+        }
+
+        .project-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: flex-start;
+            margin-bottom: 1rem;
+        }
+
+        .project-company {
+            font-size: 0.8rem;
+            font-weight: 600;
+            letter-spacing: 0.1em;
+            text-transform: uppercase;
+            color: var(--accent);
+        }
+
+        .project-date {
+            font-size: 0.8rem;
+            color: var(--text-muted);
+            white-space: nowrap;
+        }
+
+        .project-card h3 {
+            font-size: 1.1rem;
+            font-weight: 600;
+            color: #fff;
+            margin-bottom: 0.75rem;
+            line-height: 1.4;
+        }
+
+        .project-card p {
+            font-size: 0.9rem;
+            color: var(--text-muted);
+            line-height: 1.7;
+            margin-bottom: 1rem;
+        }
+
+        .project-tags {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 0.5rem;
+        }
+
+        .project-tag {
+            font-size: 0.75rem;
+            padding: 0.25rem 0.75rem;
+            background: rgba(59,130,246,0.1);
+            color: var(--accent);
+            border-radius: 1rem;
+            font-weight: 500;
+        }
+
+        /* Clients */
+        .clients-grid {
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: center;
+            gap: 3rem;
+            align-items: center;
+            padding: 2rem 0;
+        }
+
+        .client-logo {
+            height: 40px;
+            max-width: 140px;
+            object-fit: contain;
+            background: rgba(255,255,255,0.92);
+            border-radius: 0.5rem;
+            padding: 0.5rem 1rem;
+            transition: all 0.3s ease;
+            opacity: 0.8;
+        }
+
+        .client-logo:hover {
+            opacity: 1;
+            transform: translateY(-2px);
+            box-shadow: 0 4px 16px rgba(0,0,0,0.2);
+        }
+
+        .clients-disclaimer {
+            margin-top: 2rem;
+            font-size: 0.72rem;
+            color: var(--text-muted);
+            opacity: 0.6;
+            max-width: 700px;
+            margin-left: auto;
+            margin-right: auto;
+            line-height: 1.6;
+        }
+
+        .tooltip-trigger {
+            cursor: help;
+            position: relative;
+        }
+
+        .tooltip-trigger .tooltip-text {
+            position: absolute;
+            bottom: calc(100% + 8px);
+            left: 50%;
+            transform: translateX(-50%);
+            background: var(--bg-card);
+            border: 1px solid var(--border);
+            border-radius: 0.5rem;
+            padding: 0.5rem 0.8rem;
+            font-size: 0.78rem;
+            color: var(--text);
+            white-space: nowrap;
+            opacity: 0;
+            visibility: hidden;
+            transition: all 0.2s ease;
+            pointer-events: none;
+            box-shadow: 0 8px 24px rgba(0,0,0,0.3);
+        }
+
+        .tooltip-trigger:hover .tooltip-text {
+            opacity: 1;
+            visibility: visible;
+        }
+
+        /* Contact */
+        .contact-section { background: var(--navy-light); }
+
+        .contact-grid {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 4rem;
+        }
+
+        .contact-info h3 {
+            font-size: 1.3rem;
+            color: #fff;
+            margin-bottom: 1.5rem;
+        }
+
+        .contact-item {
+            display: flex;
+            align-items: center;
+            gap: 1rem;
+            margin-bottom: 1.5rem;
+        }
+
+        .contact-icon {
+            width: 44px;
+            height: 44px;
+            background: rgba(59,130,246,0.1);
+            border-radius: 0.5rem;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: var(--accent);
+            flex-shrink: 0;
+        }
+
+        .contact-item-text span {
+            display: block;
+            font-size: 0.8rem;
+            color: var(--text-muted);
+            margin-bottom: 0.15rem;
+        }
+
+        .contact-item-text a,
+        .contact-item-text p {
+            color: #fff;
+            text-decoration: none;
+            font-weight: 500;
+            font-size: 1rem;
+        }
+
+        .contact-item-text a:hover { color: var(--accent); }
+
+        .contact-form {
+            display: flex;
+            flex-direction: column;
+            gap: 1rem;
+        }
+
+        .form-row { display: flex; gap: 1rem; }
+
+        .contact-form input,
+        .contact-form textarea {
+            width: 100%;
+            padding: 0.9rem 1.2rem;
+            background: var(--bg-card);
+            border: 1px solid var(--border);
+            border-radius: 0.5rem;
+            color: #fff;
+            font-family: inherit;
+            font-size: 0.95rem;
+            transition: border-color 0.3s;
+        }
+
+        .contact-form input:focus,
+        .contact-form textarea:focus {
+            outline: none;
+            border-color: var(--accent);
+        }
+
+        .contact-form textarea { min-height: 140px; resize: vertical; }
+
+        .contact-form input::placeholder,
+        .contact-form textarea::placeholder { color: var(--text-muted); }
+
+        /* Footer */
+        footer {
+            padding: 2rem 0;
+            border-top: 1px solid var(--border);
+            text-align: center;
+        }
+
+        footer p {
+            font-size: 0.85rem;
+            color: var(--text-muted);
+        }
+
+        footer a {
+            color: var(--text-muted);
+            text-decoration: none;
+        }
+
+        footer a:hover { color: #fff; }
+
+        /* Animations */
+        .fade-in {
+            opacity: 0;
+            transform: translateY(30px);
+            transition: all 0.8s ease;
+        }
+
+        .fade-in.visible {
+            opacity: 1;
+            transform: translateY(0);
+        }
+
+        /* Responsive */
+        @media (max-width: 1024px) {
+            .services-grid { grid-template-columns: repeat(2, 1fr); }
+        }
+
+        @media (max-width: 768px) {
+            .nav-links { display: none; }
+            .nav-links.open {
+                display: flex;
+                flex-direction: column;
+                position: absolute;
+                top: 100%;
+                left: 0;
+                right: 0;
+                background: rgba(15,27,45,0.98);
+                backdrop-filter: blur(20px);
+                padding: 2rem;
+                gap: 1.5rem;
+                border-bottom: 1px solid var(--border);
+            }
+            .nav-toggle { display: block; }
+
+            .hero-inner {
+                grid-template-columns: 1fr;
+                text-align: center;
+                padding-top: 8rem;
+            }
+            .hero-text { max-width: 100%; }
+            .hero-desc { margin-left: auto; margin-right: auto; }
+            .hero-buttons { justify-content: center; }
+            .hero-stats { justify-content: center; flex-wrap: wrap; gap: 2rem; }
+            .hero-image { order: -1; }
+            .hero-image img { max-width: 280px; }
+
+            .about-grid {
+                grid-template-columns: 1fr;
+                text-align: center;
+            }
+            .about-image { display: flex; justify-content: center; }
+            .about-image img { max-width: 320px; }
+            .about-highlights { justify-items: center; }
+
+            .certs-row { justify-content: center; }
+
+            .services-grid { grid-template-columns: 1fr; }
+            .project-grid { grid-template-columns: 1fr; }
+            .contact-grid { grid-template-columns: 1fr; }
+            .form-row { flex-direction: column; }
+
+            .clients-grid { gap: 2rem; }
+            .client-logo { height: 35px; }
+
+            .stat-tooltip { min-width: 180px; }
+        }
+    </style>
+</head>
+<body>
+
+<!-- Navigation -->
+<nav id="navbar">
+    <div class="nav-inner">
+        <a href="#" class="nav-logo">Florian Gaab<span>.</span></a>
+        <div class="nav-right">
+            <button class="nav-toggle" onclick="document.querySelector('.nav-links').classList.toggle('open')" aria-label="Menu">
+                <span></span><span></span><span></span>
+            </button>
+            <ul class="nav-links">
+                <li><a href="#ueber-mich" data-i18n="nav.about">Über mich</a></li>
+                <li><a href="#leistungen" data-i18n="nav.services">Leistungen</a></li>
+                <li><a href="#projekte" data-i18n="nav.projects">Projekte</a></li>
+                <li><a href="#kontakt" data-i18n="nav.contact">Kontakt</a></li>
+            </ul>
+            <div class="lang-toggle">
+                <button class="lang-btn active" id="lang-de" onclick="setLang('de')">DE</button>
+                <button class="lang-btn" id="lang-en" onclick="setLang('en')">EN</button>
+            </div>
+        </div>
+    </div>
+</nav>
+
+<!-- Hero -->
+<section class="hero">
+    <div class="hero-inner">
+        <div class="hero-text">
+            <div class="hero-label" data-i18n="hero.label">Freiberuflicher Berater</div>
+            <h1 data-i18n-html="hero.title">K.I.-Beratung &amp;<br><span class="accent">IT-Projektmanagement</span></h1>
+            <p class="hero-desc" data-i18n="hero.desc">
+                Ich bringe Ihre IT-Projekte zum Erfolg: von der strategischen K.I.-Implementierung bis zum operativen Projektmanagement. Strukturiert, ergebnisorientiert und mit dem Blick fürs Ganze.
+            </p>
+            <div class="hero-buttons">
+                <a href="#kontakt" class="btn btn-primary">
+                    <svg width="18" height="18" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path d="M21 15a2 2 0 01-2 2H7l-4 4V5a2 2 0 012-2h14a2 2 0 012 2z"/></svg>
+                    <span data-i18n="hero.cta">Kontakt aufnehmen</span>
+                </a>
+                <a href="#projekte" class="btn btn-outline" data-i18n="hero.cta2">Projektreferenzen</a>
+            </div>
+            <div class="hero-stats">
+                <div>
+                    <div class="stat-number" id="years-experience">8+</div>
+                    <div class="stat-label" data-i18n="hero.stat1">Jahre Projekterfahrung</div>
+                </div>
+                <div>
+                    <div class="stat-number">20+</div>
+                    <div class="stat-label" data-i18n="hero.stat2">Erfolgr. Projekte</div>
+                </div>
+                <div class="stat-with-tooltip">
+                    <div class="stat-number">8+</div>
+                    <div class="stat-label" data-i18n="hero.stat3">Branchen</div>
+                    <div class="stat-tooltip">
+                        <ul>
+                            <li data-i18n="tooltip.auto">Automobilindustrie</li>
+                            <li data-i18n="tooltip.aero">Luftfahrt &amp; MRO</li>
+                            <li data-i18n="tooltip.gov">Öffentlicher Sektor &amp; Behörden</li>
+                            <li data-i18n="tooltip.fintech">FinTech &amp; Finanzdienstleistung</li>
+                            <li data-i18n="tooltip.telecom">Telekommunikation</li>
+                            <li data-i18n="tooltip.logistics">Logistik</li>
+                            <li data-i18n="tooltip.chem">Chemie &amp; Distribution</li>
+                            <li data-i18n="tooltip.it">IT-Dienstleistung</li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="hero-image">
+            <img src="images/Florian Gaab79735.jpg" alt="Florian Gaab - IT-Projektmanager und K.I.-Berater">
+        </div>
+    </div>
+</section>
+
+<!-- Quote -->
+<div class="quote-section">
+    <blockquote>&ldquo;Done is better than perfect.&rdquo;</blockquote>
+    <cite>&mdash; Sheryl Sandberg</cite>
+    <p class="quote-philosophy" data-i18n="quote.text">
+        Dieses Prinzip leitet meine Arbeit: Eine funktionierende Lösung, die heute Mehrwert schafft, ist wertvoller als ein perfektes Konzept, das nie das Licht der Welt erblickt. Mein Antrieb ist es, Projekte konsequent ins Ziel zu bringen. Pragmatisch, lösungsorientiert und immer mit dem Fokus auf das, was für den Kunden wirklich zählt: ein greifbares, funktionierendes Ergebnis.
+    </p>
+</div>
+
+<!-- About -->
+<section id="ueber-mich">
+    <div class="section-inner">
+        <div class="about-grid">
+            <div class="about-image fade-in">
+                <img src="images/Florian Gaab79802_comp_03.jpg" alt="Florian Gaab">
+            </div>
+            <div class="about-text fade-in">
+                <div class="section-label" data-i18n="about.label">Über mich</div>
+                <h2 class="section-title" data-i18n="about.title">Erfahrung trifft Umsetzungsstärke</h2>
+                <p data-i18n="about.p1">
+                    Als freiberuflicher IT-Projektmanager und K.I.-Berater verbinde ich technische Tiefe mit unternehmerischem Weitblick. Mein doppelter Masterabschluss, M.Sc. in Wirtschaftsingenieurwesen sowie M.C.Sc. in Informatik (mit Auszeichnung und Fulbright-Stipendium), gibt mir eine seltene Kombination aus betriebswirtschaftlicher und technischer Kompetenz. So kann ich sowohl auf Augenhöhe mit Entwicklungsteams als auch mit dem Management arbeiten.
+                </p>
+                <p data-i18n="about.p2">
+                    Meine Karriere begann als Offizier bei der Bundeswehr in der Fallschirmjägertruppe. Diese Zeit hat mich in Führung, Entscheidungsfindung unter Druck und internationaler Zusammenarbeit geprägt. Heute nutze ich diese Erfahrungen zusammen mit über <span id="years-about">8</span> Jahren Projekterfahrung in mehr als 8 Branchen, um IT-Projekte in Konzernen, Behörden und Startups gleichermaßen zum Erfolg zu führen.
+                </p>
+                <div class="about-highlights">
+                    <div class="highlight-item">
+                        <svg width="20" height="20" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path d="M22 11.08V12a10 10 0 11-5.93-9.14"/><path d="M22 4L12 14.01l-3-3"/></svg>
+                        <span data-i18n="about.h1">M.Sc. Wirtschaftsingenieurwesen</span>
+                    </div>
+                    <div class="highlight-item">
+                        <svg width="20" height="20" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path d="M22 11.08V12a10 10 0 11-5.93-9.14"/><path d="M22 4L12 14.01l-3-3"/></svg>
+                        <span class="tooltip-trigger" data-i18n-html="about.h2">M.C.Sc. Informatik (Auszeichnung)<span class="tooltip-text">Master of Computer Science, Hochschule Trier</span></span>
+                    </div>
+                    <div class="highlight-item">
+                        <svg width="20" height="20" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path d="M22 11.08V12a10 10 0 11-5.93-9.14"/><path d="M22 4L12 14.01l-3-3"/></svg>
+                        <span data-i18n="about.h3">K.I.-Implementierung</span>
+                    </div>
+                    <div class="highlight-item">
+                        <svg width="20" height="20" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path d="M22 11.08V12a10 10 0 11-5.93-9.14"/><path d="M22 4L12 14.01l-3-3"/></svg>
+                        <span data-i18n="about.h4">International erfahren</span>
+                    </div>
+                </div>
+
+                <!-- Certifications compact bar -->
+                <div class="certs-bar">
+                    <div class="certs-bar-label" data-i18n="certs.label">Zertifizierungen</div>
+                    <div class="certs-row">
+                        <div class="cert-badge">
+                            <img src="images/Zertifizierungen/pmp.png" alt="PMP">
+                            <span>PMP</span>
+                        </div>
+                        <div class="cert-badge">
+                            <img src="images/Zertifizierungen/Badge_4LC_level_C_Germany.png" alt="IPMA Level C">
+                            <span>IPMA Level C</span>
+                        </div>
+                        <div class="cert-badge">
+                            <img src="images/Zertifizierungen/scrum.png" alt="PSM">
+                            <span>PSM</span>
+                        </div>
+                        <div class="cert-badge">
+                            <img src="images/Zertifizierungen/sixsigma.jpg" alt="Lean Six Sigma Black Belt">
+                            <span>Six Sigma Black Belt</span>
+                        </div>
+                        <div class="cert-badge">
+                            <img src="images/Zertifizierungen/EC721FDA-BB43-434E-8EF8-E99F8C748EE4.png" alt="ITIL 4">
+                            <span>ITIL 4</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+
+<!-- Services -->
+<section id="leistungen" class="services-section">
+    <div class="section-inner">
+        <div class="section-label" data-i18n="services.label">Leistungen</div>
+        <h2 class="section-title" data-i18n="services.title">Was ich für Sie tun kann</h2>
+        <p class="section-desc" data-i18n="services.desc">Von der Konzeption bis zur Umsetzung begleite ich Ihr Projekt in jeder Phase mit der passenden Expertise.</p>
+
+        <div class="services-grid">
+            <div class="service-card fade-in">
+                <div class="service-icon">
+                    <svg width="28" height="28" fill="none" stroke="currentColor" stroke-width="1.5" viewBox="0 0 24 24"><path d="M12 2a4 4 0 014 4c0 1.95-2 3-2 5h-4c0-2-2-3.05-2-5a4 4 0 014-4z"/><path d="M10 17h4"/><path d="M10 20h4"/><circle cx="12" cy="12" r="10" stroke-opacity="0.3"/></svg>
+                </div>
+                <h3 data-i18n="svc1.title">K.I.-Beratung &amp; Implementierung</h3>
+                <p data-i18n="svc1.desc">Identifikation von K.I.-Anwendungsfällen, Konzeption datengetriebener Modelle und Begleitung der Implementierung, von Machine Learning bis zu intelligenten Voice Agents.</p>
+            </div>
+            <div class="service-card fade-in">
+                <div class="service-icon">
+                    <svg width="28" height="28" fill="none" stroke="currentColor" stroke-width="1.5" viewBox="0 0 24 24"><path d="M2 20h20"/><path d="M5 20V10l7-7 7 7v10"/><path d="M9 20v-4h6v4"/></svg>
+                </div>
+                <h3 data-i18n="svc2.title">IT-Projektmanagement</h3>
+                <p data-i18n="svc2.desc">Steuerung komplexer IT-Projekte nach klassischen und agilen Methoden. Von der Infrastruktur-Migration bis zur Softwareentwicklung. Strukturiert und zielorientiert.</p>
+            </div>
+            <div class="service-card fade-in">
+                <div class="service-icon">
+                    <svg width="28" height="28" fill="none" stroke="currentColor" stroke-width="1.5" viewBox="0 0 24 24"><path d="M12 22c5.523 0 10-4.477 10-10S17.523 2 12 2 2 6.477 2 12s4.477 10 10 10z"/><path d="M2 12h20"/><path d="M12 2a15.3 15.3 0 014 10 15.3 15.3 0 01-4 10 15.3 15.3 0 01-4-10 15.3 15.3 0 014-10z"/></svg>
+                </div>
+                <h3 data-i18n="svc3.title">Digitale Transformation</h3>
+                <p data-i18n="svc3.desc">Digitalisierung von Geschäftsprozessen, Ablösung von Legacy-Systemen und Einführung moderner Webapplikationen für Behörden und Unternehmen.</p>
+            </div>
+            <div class="service-card fade-in">
+                <div class="service-icon">
+                    <svg width="28" height="28" fill="none" stroke="currentColor" stroke-width="1.5" viewBox="0 0 24 24"><path d="M17 21v-2a4 4 0 00-4-4H5a4 4 0 00-4 4v2"/><circle cx="9" cy="7" r="4"/><path d="M23 21v-2a4 4 0 00-3-3.87"/><path d="M16 3.13a4 4 0 010 7.75"/></svg>
+                </div>
+                <h3 data-i18n="svc4.title">Stakeholder-Management</h3>
+                <p data-i18n="svc4.desc">Koordination zwischen internen Teams, externen Dienstleistern und Management. Klare Kommunikation und professionelles Eskalationsmanagement.</p>
+            </div>
+            <div class="service-card fade-in">
+                <div class="service-icon">
+                    <svg width="28" height="28" fill="none" stroke="currentColor" stroke-width="1.5" viewBox="0 0 24 24"><rect x="2" y="3" width="20" height="14" rx="2"/><path d="M8 21h8"/><path d="M12 17v4"/></svg>
+                </div>
+                <h3 data-i18n="svc5.title">Produktmanagement</h3>
+                <p data-i18n="svc5.desc">Definition von Produktvisionen, Anforderungsmanagement und Priorisierung als Product Owner. Brückenbauer zwischen Business und Entwicklung.</p>
+            </div>
+            <div class="service-card fade-in">
+                <div class="service-icon">
+                    <svg width="28" height="28" fill="none" stroke="currentColor" stroke-width="1.5" viewBox="0 0 24 24"><path d="M14.7 6.3a1 1 0 000 1.4l1.6 1.6a1 1 0 001.4 0l3.77-3.77a6 6 0 01-7.94 7.94l-6.91 6.91a2.12 2.12 0 01-3-3l6.91-6.91a6 6 0 017.94-7.94l-3.76 3.76z"/></svg>
+                </div>
+                <h3 data-i18n="svc6.title">IT-Infrastruktur &amp; Cloud</h3>
+                <p data-i18n="svc6.desc">Planung und Steuerung von Cloud-Migrationen, Infrastruktur-Modernisierung und Change-Management nach ITIL-Standards.</p>
+            </div>
+        </div>
+    </div>
+</section>
+
+<!-- Projects -->
+<section id="projekte">
+    <div class="section-inner">
+        <div class="section-label" data-i18n="projects.label">Projektreferenzen</div>
+        <h2 class="section-title" data-i18n="projects.title">Ausgewählte Projekte</h2>
+        <p class="section-desc" data-i18n="projects.desc">Ein Auszug meiner bisherigen Projekte in Konzernen, Behörden und Startups.</p>
+
+        <div class="project-grid">
+            <div class="project-card fade-in">
+                <div class="project-header">
+                    <span class="project-company">BWI GmbH</span>
+                    <span class="project-date">03.2025 – 02.2026</span>
+                </div>
+                <h3 data-i18n="proj1.title">Projektleitung Infrastruktur-Management</h3>
+                <p data-i18n="proj1.desc">Koordination projektübergreifender Abhängigkeiten im Programm Infrastruktur Ambulante Versorgung. Datenerhebung und Analyse des IT-Infrastrukturbestands an über 200 Standorten.</p>
+                <div class="project-tags">
+                    <span class="project-tag" data-i18n="tag.pm">Projektmanagement</span>
+                    <span class="project-tag" data-i18n="tag.stakeholder">Stakeholder-Mgmt.</span>
+                    <span class="project-tag" data-i18n="tag.infra">IT-Infrastruktur</span>
+                </div>
+            </div>
+
+            <div class="project-card fade-in">
+                <div class="project-header">
+                    <span class="project-company">i3 Broadband</span>
+                    <span class="project-date">08.2025 – 10.2025</span>
+                </div>
+                <h3 data-i18n="proj2.title">K.I.-basierter Echtzeit-Empfehlungsgeber &amp; Churn Prediction</h3>
+                <p data-i18n="proj2.desc">Entwicklung eines K.I.-Empfehlungssystems für Vertriebstelefonate sowie eines Machine-Learning-Modells zur Prognose von Kundenabwanderungen.</p>
+                <div class="project-tags">
+                    <span class="project-tag">K.I.</span>
+                    <span class="project-tag">Machine Learning</span>
+                    <span class="project-tag">Data Science</span>
+                </div>
+            </div>
+
+            <div class="project-card fade-in">
+                <div class="project-header">
+                    <span class="project-company">Reporta (AI Startup)</span>
+                    <span class="project-date">07.2025 – 08.2025</span>
+                </div>
+                <h3 data-i18n="proj3.title">Entwicklung eines AI Voice Agent</h3>
+                <p data-i18n="proj3.desc">Entwicklung eines KI-basierten Voice-Agenten mit Spracherkennung, kontextabhängiger Dialogführung und mehrsprachiger Gesprächsführung im Logistikumfeld.</p>
+                <div class="project-tags">
+                    <span class="project-tag" data-i18n="tag.aiarch">K.I.-Architektur</span>
+                    <span class="project-tag">Voice AI</span>
+                    <span class="project-tag" data-i18n="tag.privacy">Datenschutz</span>
+                </div>
+            </div>
+
+            <div class="project-card fade-in">
+                <div class="project-header">
+                    <span class="project-company">Flexvelop GmbH (FinTech)</span>
+                    <span class="project-date">07.2023 – 01.2025</span>
+                </div>
+                <h3 data-i18n="proj4.title">Operative Unternehmensführung &amp; K.I.-Einführung</h3>
+                <p data-i18n="proj4.desc">Als COO: Einführung von KI-Anwendungen zur Rechnungsanalyse, Aufsetzen aller betrieblichen Prozesse und Einführung eines innovativen B2B-Leasingprodukts.</p>
+                <div class="project-tags">
+                    <span class="project-tag">COO</span>
+                    <span class="project-tag" data-i18n="tag.aiintegration">K.I.-Integration</span>
+                    <span class="project-tag">FinTech</span>
+                </div>
+            </div>
+
+            <div class="project-card fade-in">
+                <div class="project-header">
+                    <span class="project-company">Presse- und Informationsamt (BPA)</span>
+                    <span class="project-date">01.2023 – 06.2023</span>
+                </div>
+                <h3 data-i18n="proj5.title">Softwareentwicklung zur Digitalisierung von Behördenprozessen</h3>
+                <p data-i18n="proj5.desc">Koordinierung der Entwicklung einer Webapplikation für die Bundesregierung zur Ablösung interner, nicht-standardisierter Prozesse.</p>
+                <div class="project-tags">
+                    <span class="project-tag" data-i18n="tag.gov2">Behörden</span>
+                    <span class="project-tag" data-i18n="tag.vendormgmt">Dienstleistersteuerung</span>
+                    <span class="project-tag">Angular</span>
+                </div>
+            </div>
+
+            <div class="project-card fade-in">
+                <div class="project-header">
+                    <span class="project-company">CGI / Bundeswehr</span>
+                    <span class="project-date">01.2021 – 04.2022</span>
+                </div>
+                <h3 data-i18n="proj6.title">IT-Projektmanagement &amp; Cloud-Migration</h3>
+                <p data-i18n="proj6.desc">Projektmanager für IT-Infrastrukturprojekte inkl. Migration von Lotus Notes nach Exchange, Cloud-Migration von ca. 400 Servern nach Azure und ITIL-basiertes Changemanagement.</p>
+                <div class="project-tags">
+                    <span class="project-tag">Cloud</span>
+                    <span class="project-tag">Migration</span>
+                    <span class="project-tag">ITIL</span>
+                </div>
+            </div>
+
+            <div class="project-card fade-in">
+                <div class="project-header">
+                    <span class="project-company">Lufthansa Technik</span>
+                    <span class="project-date">09.2018 – 11.2019</span>
+                </div>
+                <h3 data-i18n="proj7.title">Digitalisierung &amp; Digitale Signatur</h3>
+                <p data-i18n="proj7.desc">Einführung der digitalen Unterschrift für luftrechtlich relevante Dokumente. Digitalisierung von Einkaufsprozessen und Webapplikationsentwicklung.</p>
+                <div class="project-tags">
+                    <span class="project-tag" data-i18n="tag.digi">Digitalisierung</span>
+                    <span class="project-tag">Product Owner</span>
+                    <span class="project-tag">OpenShift</span>
+                </div>
+            </div>
+
+            <div class="project-card fade-in">
+                <div class="project-header">
+                    <span class="project-company">BMW Group</span>
+                    <span class="project-date">05.2017 – 03.2018</span>
+                </div>
+                <h3 data-i18n="proj8.title">Intelligentes Containermanagement &amp; Intralogistik</h3>
+                <p data-i18n="proj8.desc">Internationale Koordination (USA, Mexiko, Deutschland) zur Einführung eines IoT-basierten Containermanagementsystems und Materialflussoptimierung.</p>
+                <div class="project-tags">
+                    <span class="project-tag" data-i18n="tag.i40">Industrie 4.0</span>
+                    <span class="project-tag">IoT</span>
+                    <span class="project-tag">International</span>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+
+<!-- Clients -->
+<section id="kunden">
+    <div class="section-inner" style="text-align: center;">
+        <div class="section-label" data-i18n="clients.label">Kunden &amp; Partner</div>
+        <h2 class="section-title" data-i18n="clients.title">Vertrauen namhafter Unternehmen</h2>
+        <p class="section-desc" style="margin-left: auto; margin-right: auto;" data-i18n="clients.desc">Ich durfte bereits für führende Unternehmen und Institutionen aus verschiedenen Branchen arbeiten.</p>
+
+        <div class="clients-grid">
+            <img src="images/Firmenlogos/pngwing.com.png" alt="BMW" class="client-logo">
+            <img src="images/Firmenlogos/LufthansaTechnik_422x292_0.png" alt="Lufthansa Technik" class="client-logo">
+            <img src="images/Firmenlogos/Light_c9a8a305_cfb9_4164_845e_a8254b0992d9.png" alt="Brenntag" class="client-logo">
+            <img src="images/Firmenlogos/tuev.png" alt="TÜV Süd" class="client-logo">
+            <img src="images/Firmenlogos/Bild1.png" alt="Mitsubishi Power" class="client-logo">
+            <img src="images/Firmenlogos/flexvelop.jpg" alt="Flexvelop" class="client-logo">
+            <img src="images/Firmenlogos/pngwing.com (1).png" alt="Lenovo" class="client-logo">
+        </div>
+        <p class="clients-disclaimer" data-i18n="clients.disclaimer">*Alle genannten Marken und Logos sind Eigentum der jeweiligen Rechteinhaber; ihre Darstellung dient ausschließlich der referenziellen Identifikation früherer Projekte/Kunden und impliziert weder eine aktuelle Geschäftsbeziehung noch eine Partnerschaft, Billigung oder Sponsoring.</p>
+    </div>
+</section>
+
+<!-- Contact -->
+<section id="kontakt" class="contact-section">
+    <div class="section-inner">
+        <div class="section-label" data-i18n="contact.label">Kontakt</div>
+        <h2 class="section-title" data-i18n="contact.title">Lassen Sie uns sprechen</h2>
+        <p class="section-desc" data-i18n="contact.desc">Sie haben ein Projekt, bei dem ich Sie unterstützen kann? Ich freue mich auf Ihre Nachricht.</p>
+
+        <div class="contact-grid">
+            <div class="contact-info">
+                <h3>Florian Gaab Consulting</h3>
+
+                <div class="contact-item">
+                    <div class="contact-icon">
+                        <svg width="20" height="20" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z"/><path d="M22 6l-10 7L2 6"/></svg>
+                    </div>
+                    <div class="contact-item-text">
+                        <span>E-Mail</span>
+                        <a href="mailto:info@gaabconsulting.de">info@gaabconsulting.de</a>
+                    </div>
+                </div>
+
+                <div class="contact-item">
+                    <div class="contact-icon">
+                        <svg width="20" height="20" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0118 0z"/><circle cx="12" cy="10" r="3"/></svg>
+                    </div>
+                    <div class="contact-item-text">
+                        <span data-i18n="contact.location">Standort</span>
+                        <p>Hamburg, Deutschland</p>
+                    </div>
+                </div>
+
+                <div class="contact-item">
+                    <div class="contact-icon">
+                        <svg width="20" height="20" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path d="M16 8a6 6 0 016 6v7h-4v-7a2 2 0 00-4 0v7h-4v-7a6 6 0 016-6z"/><rect x="2" y="9" width="4" height="12"/><circle cx="4" cy="4" r="2"/></svg>
+                    </div>
+                    <div class="contact-item-text">
+                        <span>LinkedIn</span>
+                        <a href="https://www.linkedin.com/in/florian-gaab-consulting/" target="_blank" rel="noopener">linkedin.com/in/florian-gaab-consulting</a>
+                    </div>
+                </div>
+            </div>
+
+            <form class="contact-form" action="https://formspree.io/f/xaqllwda" method="POST">
+                <input type="hidden" name="_next" value="https://www.gaabconsulting.de?sent=1">
+                <input type="hidden" name="_subject" value="WEBSITE KONTAKTFORMULAR">
+                <div class="form-row">
+                    <input type="text" name="name" data-i18n-placeholder="form.name" placeholder="Ihr Name" required>
+                    <input type="email" name="email" data-i18n-placeholder="form.email" placeholder="Ihre E-Mail" required>
+                </div>
+                <input type="text" name="subject" data-i18n-placeholder="form.subject" placeholder="Betreff">
+                <textarea name="message" data-i18n-placeholder="form.message" placeholder="Ihre Nachricht..." required></textarea>
+                <button type="submit" class="btn btn-primary" style="width: fit-content;">
+                    <span data-i18n="form.send">Nachricht senden</span>
+                    <svg width="18" height="18" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path d="M22 2L11 13"/><path d="M22 2l-7 20-4-9-9-4 20-7z"/></svg>
+                </button>
+            </form>
+        </div>
+    </div>
+</section>
+
+<!-- Footer -->
+<footer>
+    <div class="section-inner">
+        <p>&copy; 2025 Florian Gaab Consulting. <span data-i18n="footer.rights">Alle Rechte vorbehalten.</span> &ensp;|&ensp; <a href="mailto:info@gaabconsulting.de">info@gaabconsulting.de</a></p>
+    </div>
+</footer>
+
+<script>
+    // Translations
+    const translations = {
+        de: {
+            'nav.about': 'Über mich',
+            'nav.services': 'Leistungen',
+            'nav.projects': 'Projekte',
+            'nav.contact': 'Kontakt',
+            'hero.label': 'Freiberuflicher Berater',
+            'hero.title': 'K.I.-Beratung &<br><span class="accent">IT-Projektmanagement</span>',
+            'hero.desc': 'Ich bringe Ihre IT-Projekte zum Erfolg: von der strategischen K.I.-Implementierung bis zum operativen Projektmanagement. Strukturiert, ergebnisorientiert und mit dem Blick fürs Ganze.',
+            'hero.cta': 'Kontakt aufnehmen',
+            'hero.cta2': 'Projektreferenzen',
+            'hero.stat1': 'Jahre Projekterfahrung',
+            'hero.stat2': 'Erfolgr. Projekte',
+            'hero.stat3': 'Branchen',
+            'tooltip.auto': 'Automobilindustrie',
+            'tooltip.aero': 'Luftfahrt & MRO',
+            'tooltip.gov': 'Öffentlicher Sektor & Behörden',
+            'tooltip.fintech': 'FinTech & Finanzdienstleistung',
+            'tooltip.telecom': 'Telekommunikation',
+            'tooltip.logistics': 'Logistik',
+            'tooltip.chem': 'Chemie & Distribution',
+            'tooltip.it': 'IT-Dienstleistung',
+            'quote.text': 'Dieses Prinzip leitet meine Arbeit: Eine funktionierende Lösung, die heute Mehrwert schafft, ist wertvoller als ein perfektes Konzept, das nie das Licht der Welt erblickt. Mein Antrieb ist es, Projekte konsequent ins Ziel zu bringen. Pragmatisch, lösungsorientiert und immer mit dem Fokus auf das, was für den Kunden wirklich zählt: ein greifbares, funktionierendes Ergebnis.',
+            'about.label': 'Über mich',
+            'about.title': 'Erfahrung trifft Umsetzungsstärke',
+            'about.p1': 'Als freiberuflicher IT-Projektmanager und K.I.-Berater verbinde ich technische Tiefe mit unternehmerischem Weitblick. Mein doppelter Masterabschluss, M.Sc. in Wirtschaftsingenieurwesen sowie M.C.Sc. in Informatik (mit Auszeichnung und Fulbright-Stipendium), gibt mir eine seltene Kombination aus betriebswirtschaftlicher und technischer Kompetenz. So kann ich sowohl auf Augenhöhe mit Entwicklungsteams als auch mit dem Management arbeiten.',
+            'about.p2': 'Meine Karriere begann als Offizier bei der Bundeswehr in der Fallschirmjägertruppe. Diese Zeit hat mich in Führung, Entscheidungsfindung unter Druck und internationaler Zusammenarbeit geprägt. Heute nutze ich diese Erfahrungen zusammen mit über 8 Jahren Projekterfahrung in mehr als 8 Branchen, um IT-Projekte in Konzernen, Behörden und Startups gleichermaßen zum Erfolg zu führen.',
+            'about.h1': 'M.Sc. Wirtschaftsingenieurwesen',
+            'about.h2': 'M.C.Sc. Informatik (Auszeichnung)<span class="tooltip-text">Master of Computer Science, Hochschule Trier</span>',
+            'about.h3': 'K.I.-Implementierung',
+            'about.h4': 'International erfahren',
+            'certs.label': 'Zertifizierungen',
+            'services.label': 'Leistungen',
+            'services.title': 'Was ich für Sie tun kann',
+            'services.desc': 'Von der Konzeption bis zur Umsetzung begleite ich Ihr Projekt in jeder Phase mit der passenden Expertise.',
+            'svc1.title': 'K.I.-Beratung & Implementierung',
+            'svc1.desc': 'Identifikation von K.I.-Anwendungsfällen, Konzeption datengetriebener Modelle und Begleitung der Implementierung, von Machine Learning bis zu intelligenten Voice Agents.',
+            'svc2.title': 'IT-Projektmanagement',
+            'svc2.desc': 'Steuerung komplexer IT-Projekte nach klassischen und agilen Methoden. Von der Infrastruktur-Migration bis zur Softwareentwicklung. Strukturiert und zielorientiert.',
+            'svc3.title': 'Digitale Transformation',
+            'svc3.desc': 'Digitalisierung von Geschäftsprozessen, Ablösung von Legacy-Systemen und Einführung moderner Webapplikationen für Behörden und Unternehmen.',
+            'svc4.title': 'Stakeholder-Management',
+            'svc4.desc': 'Koordination zwischen internen Teams, externen Dienstleistern und Management. Klare Kommunikation und professionelles Eskalationsmanagement.',
+            'svc5.title': 'Produktmanagement',
+            'svc5.desc': 'Definition von Produktvisionen, Anforderungsmanagement und Priorisierung als Product Owner. Brückenbauer zwischen Business und Entwicklung.',
+            'svc6.title': 'IT-Infrastruktur & Cloud',
+            'svc6.desc': 'Planung und Steuerung von Cloud-Migrationen, Infrastruktur-Modernisierung und Change-Management nach ITIL-Standards.',
+            'projects.label': 'Projektreferenzen',
+            'projects.title': 'Ausgewählte Projekte',
+            'projects.desc': 'Ein Auszug meiner bisherigen Projekte in Konzernen, Behörden und Startups.',
+            'proj1.title': 'Projektleitung Infrastruktur-Management',
+            'proj1.desc': 'Koordination projektübergreifender Abhängigkeiten im Programm Infrastruktur Ambulante Versorgung. Datenerhebung und Analyse des IT-Infrastrukturbestands an über 200 Standorten.',
+            'proj2.title': 'K.I.-basierter Echtzeit-Empfehlungsgeber & Churn Prediction',
+            'proj2.desc': 'Entwicklung eines K.I.-Empfehlungssystems für Vertriebstelefonate sowie eines Machine-Learning-Modells zur Prognose von Kundenabwanderungen.',
+            'proj3.title': 'Entwicklung eines AI Voice Agent',
+            'proj3.desc': 'Entwicklung eines KI-basierten Voice-Agenten mit Spracherkennung, kontextabhängiger Dialogführung und mehrsprachiger Gesprächsführung im Logistikumfeld.',
+            'proj4.title': 'Operative Unternehmensführung & K.I.-Einführung',
+            'proj4.desc': 'Als COO: Einführung von KI-Anwendungen zur Rechnungsanalyse, Aufsetzen aller betrieblichen Prozesse und Einführung eines innovativen B2B-Leasingprodukts.',
+            'proj5.title': 'Softwareentwicklung zur Digitalisierung von Behördenprozessen',
+            'proj5.desc': 'Koordinierung der Entwicklung einer Webapplikation für die Bundesregierung zur Ablösung interner, nicht-standardisierter Prozesse.',
+            'proj6.title': 'IT-Projektmanagement & Cloud-Migration',
+            'proj6.desc': 'Projektmanager für IT-Infrastrukturprojekte inkl. Migration von Lotus Notes nach Exchange, Cloud-Migration von ca. 400 Servern nach Azure und ITIL-basiertes Changemanagement.',
+            'proj7.title': 'Digitalisierung & Digitale Signatur',
+            'proj7.desc': 'Einführung der digitalen Unterschrift für luftrechtlich relevante Dokumente. Digitalisierung von Einkaufsprozessen und Webapplikationsentwicklung.',
+            'proj8.title': 'Intelligentes Containermanagement & Intralogistik',
+            'proj8.desc': 'Internationale Koordination (USA, Mexiko, Deutschland) zur Einführung eines IoT-basierten Containermanagementsystems und Materialflussoptimierung.',
+            'tag.pm': 'Projektmanagement',
+            'tag.stakeholder': 'Stakeholder-Mgmt.',
+            'tag.infra': 'IT-Infrastruktur',
+            'tag.aiarch': 'K.I.-Architektur',
+            'tag.privacy': 'Datenschutz',
+            'tag.aiintegration': 'K.I.-Integration',
+            'tag.gov2': 'Behörden',
+            'tag.vendormgmt': 'Dienstleistersteuerung',
+            'tag.digi': 'Digitalisierung',
+            'tag.i40': 'Industrie 4.0',
+            'clients.label': 'Kunden & Partner',
+            'clients.title': 'Vertrauen namhafter Unternehmen',
+            'clients.desc': 'Ich durfte bereits für führende Unternehmen und Institutionen aus verschiedenen Branchen arbeiten.',
+            'clients.disclaimer': '*Alle genannten Marken und Logos sind Eigentum der jeweiligen Rechteinhaber; ihre Darstellung dient ausschließlich der referenziellen Identifikation früherer Projekte/Kunden und impliziert weder eine aktuelle Geschäftsbeziehung noch eine Partnerschaft, Billigung oder Sponsoring.',
+            'contact.label': 'Kontakt',
+            'contact.title': 'Lassen Sie uns sprechen',
+            'contact.desc': 'Sie haben ein Projekt, bei dem ich Sie unterstützen kann? Ich freue mich auf Ihre Nachricht.',
+            'contact.location': 'Standort',
+            'form.name': 'Ihr Name',
+            'form.email': 'Ihre E-Mail',
+            'form.subject': 'Betreff',
+            'form.message': 'Ihre Nachricht...',
+            'form.send': 'Nachricht senden',
+            'form.success': 'Vielen Dank für Ihre Nachricht! Ich melde mich zeitnah bei Ihnen.',
+            'footer.rights': 'Alle Rechte vorbehalten.',
+        },
+        en: {
+            'nav.about': 'About',
+            'nav.services': 'Services',
+            'nav.projects': 'Projects',
+            'nav.contact': 'Contact',
+            'hero.label': 'Freelance Consultant',
+            'hero.title': 'AI Consulting &<br><span class="accent">IT Project Management</span>',
+            'hero.desc': 'I deliver your IT projects to success: from strategic AI implementation to hands-on project management. Structured, results-driven and with a holistic perspective.',
+            'hero.cta': 'Get in touch',
+            'hero.cta2': 'Project references',
+            'hero.stat1': 'Years of experience',
+            'hero.stat2': 'Successful projects',
+            'hero.stat3': 'Industries',
+            'tooltip.auto': 'Automotive',
+            'tooltip.aero': 'Aviation & MRO',
+            'tooltip.gov': 'Public sector & government',
+            'tooltip.fintech': 'FinTech & financial services',
+            'tooltip.telecom': 'Telecommunications',
+            'tooltip.logistics': 'Logistics',
+            'tooltip.chem': 'Chemicals & distribution',
+            'tooltip.it': 'IT services',
+            'quote.text': 'This principle guides my work: a working solution that creates value today is worth more than a perfect concept that never sees the light of day. My drive is to consistently deliver projects to the finish line. Pragmatic, solution-oriented and always focused on what truly matters to the client: a tangible, working result.',
+            'about.label': 'About me',
+            'about.title': 'Experience meets execution',
+            'about.p1': 'As a freelance IT project manager and AI consultant, I combine technical depth with entrepreneurial vision. My dual Master\'s degree, M.Sc. in Industrial Engineering and M.C.Sc. in Computer Science (with distinction and Fulbright scholarship), gives me a rare combination of business and technical expertise. This allows me to work at eye level with both development teams and senior management.',
+            'about.p2': 'My career began as an officer in the German Armed Forces with the paratroopers. This formative experience in leadership, decision-making under pressure and international collaboration shapes my work to this day. Together with over 8 years of project experience across more than 8 industries, I successfully deliver IT projects in corporations, government agencies and startups alike.',
+            'about.h1': 'M.Sc. Industrial Engineering',
+            'about.h2': 'M.C.Sc. Computer Science (distinction)<span class="tooltip-text">Master of Computer Science, Hochschule Trier</span>',
+            'about.h3': 'AI implementation',
+            'about.h4': 'International experience',
+            'certs.label': 'Certifications',
+            'services.label': 'Services',
+            'services.title': 'What I can do for you',
+            'services.desc': 'From concept to delivery, I support your project at every stage with the right expertise.',
+            'svc1.title': 'AI consulting & implementation',
+            'svc1.desc': 'Identification of AI use cases, design of data-driven models and hands-on implementation support, from machine learning to intelligent voice agents.',
+            'svc2.title': 'IT project management',
+            'svc2.desc': 'Managing complex IT projects using traditional and agile methodologies. From infrastructure migration to software development. Structured and goal-oriented.',
+            'svc3.title': 'Digital transformation',
+            'svc3.desc': 'Digitizing business processes, replacing legacy systems and deploying modern web applications for government agencies and enterprises.',
+            'svc4.title': 'Stakeholder management',
+            'svc4.desc': 'Coordination between internal teams, external vendors and management. Clear communication and professional escalation management.',
+            'svc5.title': 'Product management',
+            'svc5.desc': 'Defining product visions, requirements management and prioritization as Product Owner. Bridging the gap between business and development.',
+            'svc6.title': 'IT infrastructure & cloud',
+            'svc6.desc': 'Planning and managing cloud migrations, infrastructure modernization and change management aligned with ITIL standards.',
+            'projects.label': 'Project references',
+            'projects.title': 'Selected projects',
+            'projects.desc': 'A selection of my projects across corporations, government agencies and startups.',
+            'proj1.title': 'Infrastructure management lead',
+            'proj1.desc': 'Coordinating cross-project dependencies within the infrastructure program. Data collection and analysis of IT infrastructure across 200+ locations.',
+            'proj2.title': 'AI-powered real-time sales recommender & churn prediction',
+            'proj2.desc': 'Development of an AI recommendation system for sales calls and a machine learning model for predicting customer churn.',
+            'proj3.title': 'AI voice agent development',
+            'proj3.desc': 'Development of an AI-powered voice agent with speech recognition, context-aware dialogue management and multilingual conversation handling in logistics.',
+            'proj4.title': 'Operational leadership & AI integration',
+            'proj4.desc': 'As COO: introduction of AI applications for invoice analysis, setup of all business processes and launch of an innovative B2B leasing product.',
+            'proj5.title': 'Software development for government digitization',
+            'proj5.desc': 'Coordinating the development of a web application for the Federal Government, replacing internal non-standardized processes.',
+            'proj6.title': 'IT project management & cloud migration',
+            'proj6.desc': 'Project manager for IT infrastructure projects incl. Lotus Notes to Exchange migration, cloud migration of ~400 servers to Azure and ITIL-based change management.',
+            'proj7.title': 'Digitization & digital signature',
+            'proj7.desc': 'Implementation of digital signatures for aviation-critical documents. Digitization of procurement processes and web application development.',
+            'proj8.title': 'Intelligent container management & intralogistics',
+            'proj8.desc': 'International coordination (USA, Mexico, Germany) for deploying an IoT-based container management system and material flow optimization.',
+            'tag.pm': 'Project management',
+            'tag.stakeholder': 'Stakeholder mgmt.',
+            'tag.infra': 'IT infrastructure',
+            'tag.aiarch': 'AI architecture',
+            'tag.privacy': 'Data privacy',
+            'tag.aiintegration': 'AI integration',
+            'tag.gov2': 'Government',
+            'tag.vendormgmt': 'Vendor management',
+            'tag.digi': 'Digitization',
+            'tag.i40': 'Industry 4.0',
+            'clients.label': 'Clients & partners',
+            'clients.title': 'Trusted by leading companies',
+            'clients.desc': 'I have had the privilege of working for leading companies and institutions across various industries.',
+            'clients.disclaimer': '*All trademarks and logos mentioned are the property of their respective owners. Their display serves solely for referential identification of past projects/clients and does not imply any current business relationship, partnership, endorsement or sponsorship.',
+            'contact.label': 'Contact',
+            'contact.title': 'Let\'s talk',
+            'contact.desc': 'Have a project I can support you with? I look forward to hearing from you.',
+            'contact.location': 'Location',
+            'form.name': 'Your name',
+            'form.email': 'Your email',
+            'form.subject': 'Subject',
+            'form.message': 'Your message...',
+            'form.send': 'Send message',
+            'form.success': 'Thank you for your message! I will get back to you shortly.',
+            'footer.rights': 'All rights reserved.',
+        }
+    };
+
+    let currentLang = 'de';
+
+    function setLang(lang) {
+        currentLang = lang;
+        document.documentElement.lang = lang;
+        document.getElementById('lang-de').classList.toggle('active', lang === 'de');
+        document.getElementById('lang-en').classList.toggle('active', lang === 'en');
+
+        // Update text content
+        document.querySelectorAll('[data-i18n]').forEach(el => {
+            const key = el.getAttribute('data-i18n');
+            if (translations[lang][key]) {
+                el.textContent = translations[lang][key];
+            }
+        });
+
+        // Update innerHTML (for elements with HTML like <span>, <br>)
+        document.querySelectorAll('[data-i18n-html]').forEach(el => {
+            const key = el.getAttribute('data-i18n-html');
+            if (translations[lang][key]) {
+                el.innerHTML = translations[lang][key];
+            }
+        });
+
+        // Update placeholders
+        document.querySelectorAll('[data-i18n-placeholder]').forEach(el => {
+            const key = el.getAttribute('data-i18n-placeholder');
+            if (translations[lang][key]) {
+                el.placeholder = translations[lang][key];
+            }
+        });
+
+        // Update page title
+        document.title = lang === 'de'
+            ? 'Florian Gaab Consulting | K.I.-Beratung & IT-Projektmanagement'
+            : 'Florian Gaab Consulting | AI Consulting & IT Project Management';
+    }
+
+    // Dynamic years of experience (since October 2016)
+    function calcYears() {
+        const start = new Date(2016, 9); // October 2016
+        const now = new Date();
+        const years = Math.floor((now - start) / (365.25 * 24 * 60 * 60 * 1000));
+        document.getElementById('years-experience').textContent = years + '+';
+        const aboutEl = document.getElementById('years-about');
+        if (aboutEl) aboutEl.textContent = years;
+    }
+    calcYears();
+
+    // Navbar scroll effect
+    window.addEventListener('scroll', () => {
+        document.getElementById('navbar').classList.toggle('scrolled', window.scrollY > 50);
+    });
+
+    // Scroll animations
+    const observer = new IntersectionObserver((entries) => {
+        entries.forEach(entry => {
+            if (entry.isIntersecting) {
+                entry.target.classList.add('visible');
+            }
+        });
+    }, { threshold: 0.1, rootMargin: '0px 0px -40px 0px' });
+
+    document.querySelectorAll('.fade-in').forEach(el => observer.observe(el));
+
+    // Close mobile nav on link click
+    document.querySelectorAll('.nav-links a').forEach(link => {
+        link.addEventListener('click', () => {
+            document.querySelector('.nav-links').classList.remove('open');
+        });
+    });
+
+    // Show confirmation after Formspree redirect
+    if (new URLSearchParams(window.location.search).get('sent') === '1') {
+        const section = document.getElementById('kontakt');
+        if (section) {
+            const msg = document.createElement('div');
+            msg.style.cssText = 'background:rgba(52,211,153,0.15);border:1px solid rgba(52,211,153,0.3);border-radius:0.75rem;padding:1.2rem 2rem;margin-bottom:2rem;color:#34d399;font-weight:500;text-align:center;';
+            msg.setAttribute('data-i18n', 'form.success');
+            msg.textContent = currentLang === 'en'
+                ? 'Thank you for your message! I will get back to you shortly.'
+                : 'Vielen Dank für Ihre Nachricht! Ich melde mich zeitnah bei Ihnen.';
+            section.querySelector('.section-inner').insertBefore(msg, section.querySelector('.contact-grid'));
+            section.scrollIntoView({ behavior: 'smooth' });
+            window.history.replaceState({}, '', window.location.pathname);
+        }
+    }
+</script>
+
+</body>
+</html>
